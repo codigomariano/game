@@ -11,4 +11,8 @@ public class Usuario {
 		this.email= email;
 		next_id++;
 	}
+	
+	public boolean tieneEmail(String email) {
+		return this.email.equals(email);
+	}
 }

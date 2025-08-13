@@ -17,4 +17,8 @@ public class Partida {
 		this.preguntas = new Pregunta[Categoria.values().length][CANT_PREGUNTAS];
 	}
 	
+	
+	public void iniciar() {
+		System.out.println("Se inició una partida para el jugador "+this.jugador+" a las "+this.fechaPartida);
+	}
 }
