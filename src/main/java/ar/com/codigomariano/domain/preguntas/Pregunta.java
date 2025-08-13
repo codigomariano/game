@@ -1,9 +1,9 @@
-package ar.com.codigomariano.domain;
+package ar.com.codigomariano.domain.preguntas;
 
 import ar.com.codigomariano.enums.Categoria;
 import ar.com.codigomariano.enums.Opcion;
 
-public class Pregunta {
+public abstract class Pregunta {
 	private String codigo;
 	private String texto;
 	private Categoria categoria;
@@ -18,4 +18,12 @@ public class Pregunta {
 		this.opcionCorrecta = correcta;
 		this.puntos = puntos;
 	}
+	
+	
+	public void mostar() {
+		System.out.println(this.texto);
+		mostarOpciones();
+	}
+	
+	protected abstract void mostarOpciones();
 }

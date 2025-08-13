@@ -2,6 +2,7 @@ package ar.com.codigomariano.domain;
 
 import java.util.Date;
 
+import ar.com.codigomariano.domain.preguntas.Pregunta;
 import ar.com.codigomariano.enums.Categoria;
 
 public class Partida {

@@ -2,6 +2,8 @@ package ar.com.codigomariano.domain;
 
 import java.util.ArrayList;
 
+import ar.com.codigomariano.domain.preguntas.Pregunta;
+
 public class Juego {
 	private ArrayList<Usuario> usuarios;
 	private ArrayList<Pregunta> preguntas;
