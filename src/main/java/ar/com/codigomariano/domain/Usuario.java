@@ -15,4 +15,10 @@ public class Usuario {
 	public boolean tieneEmail(String email) {
 		return this.email.equals(email);
 	}
+	
+	
+	@Override
+	public String toString() {
+		return "Usuario [ID="+this.id+" | EMAIL="+ this.email +"]";
+	}
 }

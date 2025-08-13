@@ -3,24 +3,23 @@ package ar.com.codigomariano.domain.preguntas;
 import ar.com.codigomariano.enums.Categoria;
 import ar.com.codigomariano.enums.Opcion;
 
-public class PreguntaMultiple extends Pregunta{
-	private String[] opciones;
-	
+public class PreguntaMultiple extends Pregunta<String>{
 
+
+	public PreguntaMultiple(String cod, String text, Categoria categoria, Opcion correcta) {
+		super(cod, text, categoria, correcta);
+	}
+	
 	public PreguntaMultiple(String cod, String text, Categoria categoria, Opcion correcta, int puntos) {
 		super(cod, text, categoria, correcta, puntos);
-		this.opciones = new String[Opcion.values().length];
 	}
 
+	public void sumarOpcion(Opcion o, String texto) {
+		asignar(o, texto);
+	}
 	
-	public void sumarOpcion(Opcion opcion, String texto) {
-		this.opciones[opcion.ordinal()] = texto;
-	}
-
 	@Override
-	protected void mostarOpciones() {
-		for (Opcion opcion : Opcion.values()) {
-			System.out.println(opcion + ". " + this.opciones[opcion.ordinal()]);
-		}
+	protected String[] inicializarOpciones() {
+		return new String[Opcion.values().length];
 	}
 }

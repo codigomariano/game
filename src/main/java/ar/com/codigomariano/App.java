@@ -35,7 +35,7 @@ public class App {
         
         Partida p = juego.iniciarPartida(email);
         p.iniciar();
-        
+      
         PreguntaMultiple pm = new PreguntaMultiple("M222", "¿En qué año se produjo el descubrimiento de América?", Categoria.HISTORIA, Opcion.A, 100);
         pm.sumarOpcion(Opcion.A, "1492");
         pm.sumarOpcion(Opcion.B, "1516");
@@ -47,7 +47,6 @@ public class App {
  
         pm.mostar();
         pb.mostar();
-        
     }
     
     
