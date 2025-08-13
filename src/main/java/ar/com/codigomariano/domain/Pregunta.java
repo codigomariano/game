@@ -1,17 +1,21 @@
 package ar.com.codigomariano.domain;
 
 import ar.com.codigomariano.enums.Categoria;
+import ar.com.codigomariano.enums.Opcion;
 
 public class Pregunta {
 	private String codigo;
 	private String texto;
 	private Categoria categoria;
+	private Opcion opcionCorrecta;
+	private int puntos;
 	
 	
-	
-	public Pregunta(String cod, String text, Categoria categoria) {
+	public Pregunta(String cod, String text, Categoria categoria, Opcion correcta, int puntos) {
 		this.codigo = cod;
 		this.texto = text;
 		this.categoria = categoria;
+		this.opcionCorrecta = correcta;
+		this.puntos = puntos;
 	}
 }
