@@ -7,5 +7,4 @@ public class Juego {
 	private ArrayList<Pregunta> preguntas;
 	
 	
-
 }

@@ -1,6 +1,5 @@
 package ar.com.codigomariano.domain;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import ar.com.codigomariano.enums.Categoria;
