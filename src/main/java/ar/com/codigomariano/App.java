@@ -9,6 +9,7 @@ import ar.com.codigomariano.domain.preguntas.PreguntaBinaria;
 import ar.com.codigomariano.domain.preguntas.PreguntaMultiple;
 import ar.com.codigomariano.enums.Categoria;
 import ar.com.codigomariano.enums.Opcion;
+import ar.com.codigomariano.exceptions.EmailNotFoundException;
 
 public class App {
 	private static Scanner sc = new Scanner(System.in);
@@ -18,22 +19,36 @@ public class App {
     	String email = null;
         Juego juego = new Juego();
         
-        for(int cant = 0; cant < 5; cant++) {
+        Usuario u = null;
+        while(u == null) {
         	email = solicitarEmail();
-        	Usuario u = new Usuario(email);
-        	juego.agregarUsuario(u);
+        	
+        	try {
+        		u = new Usuario(email);        	        		
+        	}catch(IllegalArgumentException e) {
+        		System.out.println(e.getMessage());
+        	}
         }
+        
+        juego.agregarUsuario(u);
         
         System.out.println("***************");
         System.out.println("INICIANDO PARTIDA");
         
-        boolean valido = false;
-        while(!valido) {
+        Partida p = null;
+        
+        while(p == null) {
+        	
         	email = solicitarEmail();
-        	valido = juego.existeEmailRegistrado(email);
+        	
+        	try {
+				p = juego.iniciarPartida(email);
+			} catch (EmailNotFoundException e) {
+				 System.out.println(e.getMessage());
+			}
+        	
         }
         
-        Partida p = juego.iniciarPartida(email);
         p.iniciar();
       
         PreguntaMultiple pm = new PreguntaMultiple("M222", "¿En qué año se produjo el descubrimiento de América?", Categoria.HISTORIA, Opcion.A, 100);

@@ -3,6 +3,7 @@ package ar.com.codigomariano.domain;
 import java.util.ArrayList;
 
 import ar.com.codigomariano.domain.preguntas.Pregunta;
+import ar.com.codigomariano.exceptions.EmailNotFoundException;
 
 public class Juego {
 	private ArrayList<Usuario> usuarios;
@@ -15,17 +16,13 @@ public class Juego {
 	}
 	
 	
-	public boolean existeEmailRegistrado(String email) {
-		return localizarEmail(email) != -1;
-	}
-	
-	public Partida iniciarPartida(String email) {
+	public Partida iniciarPartida(String email) throws EmailNotFoundException {
 		int posicion = localizarEmail(email);
 		return new Partida(this.usuarios.get(posicion));
 	}
 	
 	
-	private int localizarEmail(String email) {
+	private int localizarEmail(String email) throws EmailNotFoundException {
 		int index = 0;
 		int pos = -1;
 		
@@ -37,6 +34,8 @@ public class Juego {
 			
 			index++;
 		}
+		
+		if(pos == -1) throw new EmailNotFoundException(email);
 		
 		return pos;
 	}
