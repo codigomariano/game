@@ -1,0 +1,17 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+      
+	<body>
+		<div layout:fragment="content">
+			<div th:replace="fragments/page-header-title.html :: page-header(#{partidas.header.title})"></div>
+		
+			<form id="iniciarFrm" th:object="${form}" th:action="@{/partida/iniciar}" method="post">
+				<input id="username" th:field="*{username}" />
+				<button id="iniciarBtn" type="submit" th:text="#{iniciar.btn}"></button>			
+			</form>			
+		</div>
+	</body>
+</html>
