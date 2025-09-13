@@ -10,8 +10,8 @@ create table JUEGOS(
 );
 
 create table USUARIOS(
-	ID bigint not null,
-	nombre varchar(50) not null,
+	ID bigint not null AUTO_INCREMENT,
+	email varchar(50) not null,
 	juego_id bigint,
 	PRIMARY KEY(ID)
 );
@@ -19,7 +19,7 @@ create table USUARIOS(
 alter table USUARIOS add constraint USR$JUG foreign key (juego_id) references JUEGOS(ID);
 
 create table PREGUNTAS(
-	ID bigint not null,
+	ID bigint not null AUTO_INCREMENT,
 	codigo varchar(25) not null,
 	texto varchar(255) not null,
 	puntos smallint,
