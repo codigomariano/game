@@ -1,17 +1,26 @@
 package ar.com.codigomariano.domain;
 
-public class Usuario {
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "USUARIOS")
+public class Usuario extends Persistible {
 	private static final int EMAIL_MIN_CARACTERES = 15;
 	private static final int EMAIL_MAX_CARACTERES = 75;
-	private static int next_id = 1;
-	private Integer id;
+	
+	@Column(name = "email")
 	private String email;
 	
 	
+	// Just for Hibernate 
+	Usuario() {
+		
+	}
+	
 	public Usuario(String email) {
-		this.id = next_id;
 		setEmail(email);
-		next_id++;
 	}
 	
 	public boolean tieneEmail(String email) {
@@ -21,7 +30,7 @@ public class Usuario {
 	
 	@Override
 	public String toString() {
-		return "Usuario [ID="+this.id+" | EMAIL="+ this.email +"]";
+		return "Usuario [ID="+getId()+" | EMAIL="+ this.email +"]";
 	}
 	
 	private void setEmail(String email) {

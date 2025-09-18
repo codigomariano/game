@@ -1,19 +1,54 @@
 package ar.com.codigomariano.domain.preguntas;
 
+import java.util.List;
+
+import org.hibernate.annotations.Type;
+
+import ar.com.codigomariano.domain.Persistible;
 import ar.com.codigomariano.enums.Categoria;
 import ar.com.codigomariano.enums.Opcion;
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Converter;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
-public abstract class Pregunta<T> {
+@Entity
+@Table(name = "PREGUNTAS")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "discriminator", discriminatorType = DiscriminatorType.STRING)
+public abstract class Pregunta<T> extends Persistible{
 	private static final int DEFAULT_PUNTOS = 100;
 	private static final String ERR_CODIGO_VACIO = "El código no puede estar vacío";
 	private static final String ERR_TEXTO_VACIO = "El texto no puede estar vacío";
 	private static final String ERR_CATEGORIA = "La categoría no puede ser nula";
 	private static final String ERR_OPCION_CORRECTA = "La opción correcta no puede ser nula";
+	
+	@Column(name = "codigo")
 	private String codigo;
+	
+	@Column(name = "texto")
 	private String texto;
+	
+	@Column(name = "categoria_id")
+	@Enumerated(EnumType.ORDINAL)
 	private Categoria categoria;
+	
+	@Column(name = "opcion_correcta")
+	@Enumerated(EnumType.STRING)
 	private Opcion opcionCorrecta;
-	private T[] opciones;
+	
+	private Opcion[] opciones;
+	
 	private int puntos;
 	
 	
@@ -28,7 +63,7 @@ public abstract class Pregunta<T> {
 		setCategoria(categoria);
 		setOpcionCorrecta(correcta);
 		this.puntos = puntos;
-		this.opciones = inicializarOpciones();
+		//this.opciones = inicializarOpciones();
 	}
 	
 	
@@ -41,10 +76,10 @@ public abstract class Pregunta<T> {
 	}
 		
 	protected void asignar(Opcion opcion, T valor) {
-		this.opciones[opcion.ordinal()] = valor;
+		//this.opciones[opcion.ordinal()] = valor;
 	}
 	
-	protected abstract T[] inicializarOpciones();
+	//protected abstract List<T> inicializarOpciones();
 
 	public void setCodigo(String codigo) {
 		if(codigo == null || codigo.isBlank()) throw new IllegalArgumentException(ERR_CODIGO_VACIO);
@@ -65,7 +100,4 @@ public abstract class Pregunta<T> {
 		if(opcionCorrecta == null) throw new IllegalArgumentException(ERR_OPCION_CORRECTA);
 		this.opcionCorrecta = opcionCorrecta;
 	}
-	
-	
-	
 }

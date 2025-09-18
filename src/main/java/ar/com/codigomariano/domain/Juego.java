@@ -4,9 +4,20 @@ import java.util.ArrayList;
 
 import ar.com.codigomariano.domain.preguntas.Pregunta;
 import ar.com.codigomariano.exceptions.EmailNotFoundException;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
-public class Juego {
+@Entity
+@Table(name = "JUEGOS")
+public class Juego extends Persistible{
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "juego_id", referencedColumnName = "ID")
 	private ArrayList<Usuario> usuarios;
+	
+	@OneToMany
 	private ArrayList<Pregunta> preguntas;
 	
 	
