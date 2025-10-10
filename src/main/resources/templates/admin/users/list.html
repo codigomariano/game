@@ -1,0 +1,41 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+      
+	<body>
+		<div layout:fragment="content">
+			<div th:replace="fragments/page-header-title.html :: page-header(#{menu.administracion.users})"></div>
+		
+			<div class="card">
+           		<div class="card-body">
+                	<h4 th:text="#{adm.user.list.title}" class="card-title"></h4>
+                    <p class="card-description"> 
+						<a th:href="@{/adm/users/edit}" th:text="#{user.create.btn}"></a>	
+                    </p>
+                    <div class="table-responsive">
+                    	<table class="table table-hover">
+                        	<thead>
+                          		<tr>
+                            		<th th:text="#{col.id}"></th>
+                            		<th th:text="#{col.email}"></th>
+                            		<th style="text-align: right;" th:text="#{col.actions}"></th>
+                          		</tr>
+                        	</thead>
+                        	<tbody>
+	                          <tr th:each="user : ${listado}">
+	                            <td th:text="${user.id}"></td>
+	                         	<td th:text="${user.email}"></td>
+	                         	<td style="text-align: right;">
+	                         		<a th:href="@{/adm/users/edit?id=} + ${user.id}" th:text="#{user.edit.btn}"></a>
+	                         	</td>
+	                          </tr>
+                        	</tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+		</div>
+	</body>
+</html>
