@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.codigomariano.domain.Usuario;
-import ar.com.codigomariano.enums.Opcion;
 import ar.com.codigomariano.repositorios.UserRepository;
 
 @Service
@@ -35,15 +34,10 @@ public class UserServiceImp implements UserService{
 		}
 		
 		return exists;
+	}
 
 	@Override
 	public List<Usuario> listAll() {
 		return this.repository.findAll();
-	}
-
-	@Override
-	public Usuario obtener(String email) {
-		Optional<Usuario> user = this.repository.findByEmail(email);
-		return (user.isPresent() ? user.get() : null);
 	}
 }
