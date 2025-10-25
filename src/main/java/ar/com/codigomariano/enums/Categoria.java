@@ -2,7 +2,7 @@ package ar.com.codigomariano.enums;
 
 public enum Categoria {
 	GEOGRAFIA("geography"),
-	ARTE_Y_LITERATURA("geography"),
+	ARTE_Y_LITERATURA("art"),
 	ENTRETENIMIENTO("entertainment"),
 	CIENCIA("nature"),
 	DEPORTES("leisure"),

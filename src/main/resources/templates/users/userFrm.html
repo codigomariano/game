@@ -23,10 +23,8 @@
                       			</div>
 
                       			<button id="saveBtn" type="submit" class="btn btn-primary me-2" th:text="#{save.btn}"></button>
-                      			<button id="cancelBtn" type="button" onclick="$(cancelFrm).submit();" class="btn btn-dark" th:text="#{cancel.btn}"></button>
+                      			<button id="cancelBtn" type="button" class="btn btn-dark" th:text="#{cancel.btn}"></button>
                     		</form>
-                    		
-                    		<form th:replace="fragments/cancel-form.html :: cancelFrm(@{/})" />
                   		</div>		
 					</div>
               	</div>			

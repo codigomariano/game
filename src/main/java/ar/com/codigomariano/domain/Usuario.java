@@ -28,12 +28,16 @@ public class Usuario extends Persistible {
 	}
 	
 	
+	public String getEmail() {
+		return email;
+	}
+
 	@Override
 	public String toString() {
 		return "Usuario [ID="+getId()+" | EMAIL="+ this.email +"]";
 	}
 	
-	private void setEmail(String email) {
+	public void setEmail(String email) {
 		if(email == null || email.length() < EMAIL_MIN_CARACTERES || email.length() > EMAIL_MAX_CARACTERES) {
 			throw new IllegalArgumentException("El mail del usuario debe tener entre "+EMAIL_MIN_CARACTERES+" y "+EMAIL_MAX_CARACTERES+" caracteres");
 		}
