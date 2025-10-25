@@ -29,8 +29,8 @@ public class UserServiceImp implements UserService{
 		boolean exists = false;
 		
 		if(email != null) {
-			Optional<Usuario> result = this.repository.findByEmail(email);
-			exists = result.isPresent();
+			List<Usuario> result = this.repository.findByEmail(email);
+			exists = !result.isEmpty();
 		}
 		
 		return exists;
