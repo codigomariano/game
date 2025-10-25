@@ -8,4 +8,6 @@ public interface UserService {
 	
 	public void guardarUsuario(Usuario u);
 	
+	public boolean userExists(String email);
+	
 }
