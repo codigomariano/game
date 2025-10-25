@@ -5,13 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ar.com.codigomariano.domain.Usuario;
 import ar.com.codigomariano.forms.UserForm;
+import ar.com.codigomariano.forms.validators.UserFormValidator;
 import ar.com.codigomariano.servicios.UserService;
 
 @Controller
@@ -22,6 +27,14 @@ public class UserAdminController {
 	private static final String PATH_CONTEXT_URL = "/adm/users";
 	@Autowired
 	private UserService servicio;
+	@Autowired
+	private UserFormValidator validator;
+	
+	
+	@InitBinder(value = FORM_ATTRIBUTE)
+	void initFormValidator(WebDataBinder binder) {
+		binder.addValidators(this.validator);
+	}
 	
 	
 	@GetMapping(value = PATH_CONTEXT_URL)
@@ -31,6 +44,7 @@ public class UserAdminController {
 		
 		return PATH_PAGES_URL + "/list";
 	}
+	
 	
 	@GetMapping(value = PATH_CONTEXT_URL + "/edit")
 	public String edit(Model model, @RequestParam(name = "id", defaultValue = "-1") Long id) {
@@ -49,7 +63,9 @@ public class UserAdminController {
 	}
 	
 	@PostMapping(value = PATH_CONTEXT_URL + "/save")
-	public String save(@ModelAttribute(name = FORM_ATTRIBUTE) UserForm formulario) {
+	public String save(@Validated @ModelAttribute(name = FORM_ATTRIBUTE) UserForm formulario, BindingResult resultados) {
+		if(resultados.hasErrors()) return PATH_PAGES_URL + "/form";
+		
 		Usuario usuario;
 		String email = formulario.getEmail();
 		

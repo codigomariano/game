@@ -8,6 +8,8 @@ public interface UserService {
 
 	public Usuario obtener(Long id);
 	
+	public Usuario obtener(String email);
+	
 	public void guardarUsuario(Usuario u);
 	
 	public List<Usuario> listAll();

@@ -28,4 +28,10 @@ public class UserServiceImp implements UserService{
 	public List<Usuario> listAll() {
 		return this.repository.findAll();
 	}
+
+	@Override
+	public Usuario obtener(String email) {
+		Optional<Usuario> user = this.repository.findByEmail(email);
+		return (user.isPresent() ? user.get() : null);
+	}
 }

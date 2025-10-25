@@ -20,7 +20,8 @@
 						<div class="form-group row">
                         	<label for="exampleInputEmail2" class="col-sm-3 col-form-label">Email</label>
                         	<div class="col-sm-9">
-                          		<input id="email" type="email" th:field="*{email}" class="form-control" placeholder="Email">
+                          		<input id="email" type="email" th:field="*{email}" th:class="'form-control' +  ${#fields.hasErrors('email') ? ' is-invalid' : ''}" placeholder="Email">
+                          		<div id="email-err" class="feedback invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                         	</div>
                       	</div>
                       
