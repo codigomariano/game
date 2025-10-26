@@ -3,6 +3,7 @@ package ar.com.codigomariano.servicios;
 import java.util.List;
 
 import ar.com.codigomariano.domain.Usuario;
+import ar.com.codigomariano.dtos.UsuarioDTO;
 
 public interface UserService {
 
@@ -12,6 +13,6 @@ public interface UserService {
 	
 	public boolean userExists(String email);
 	
-	public List<Usuario> listAll();
+	public List<UsuarioDTO> listAll();
 	
 }

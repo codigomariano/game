@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ar.com.codigomariano.domain.Usuario;
+import ar.com.codigomariano.dtos.UsuarioDTO;
 import ar.com.codigomariano.forms.UserForm;
 import ar.com.codigomariano.forms.validators.UserFormValidator;
 import ar.com.codigomariano.servicios.UserService;
@@ -39,7 +40,7 @@ public class UserAdminController {
 	
 	@GetMapping(value = PATH_CONTEXT_URL)
 	public String init(Model model) {
-		List<Usuario> usuarios = this.servicio.listAll();
+		List<UsuarioDTO> usuarios = this.servicio.listAll();
 		model.addAttribute(LIST_ATTRIBUTE, usuarios);
 		
 		return PATH_PAGES_URL + "/list";
