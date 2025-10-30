@@ -1,6 +1,7 @@
 package ar.com.codigomariano.servicios;
 
 import ar.com.codigomariano.domain.Usuario;
+import ar.com.codigomariano.dtos.UsuarioDTO;
 
 public interface UserService {
 
@@ -8,6 +9,8 @@ public interface UserService {
 	
 	public void guardarUsuario(Usuario u);
 	
-	public boolean existsUser(String email);
+	public boolean userExists(String email);
+	
+	public List<UsuarioDTO> listAll();
 	
 }
