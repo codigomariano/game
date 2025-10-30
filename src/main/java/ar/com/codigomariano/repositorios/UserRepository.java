@@ -10,6 +10,6 @@ import ar.com.codigomariano.domain.Usuario;
 @Repository
 public interface UserRepository extends JpaRepository<Usuario, Long>{
 
-	List<Usuario> findByEmail(String email);
-	
+	 public List<Usuario> findByEmail(String email);
+	 
 }

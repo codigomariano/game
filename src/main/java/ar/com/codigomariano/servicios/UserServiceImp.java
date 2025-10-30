@@ -28,14 +28,14 @@ public class UserServiceImp implements UserService{
 	public void guardarUsuario(Usuario u) {
 		this.repository.save(u);
 	}
-	
+
 	@Override
-	public boolean userExists(String email) {
+	public boolean existsUser(String email) {
 		boolean exists = false;
 		
 		if(email != null) {
-			List<Usuario> result = this.repository.findByEmail(email);
-			exists = !result.isEmpty();
+			List<Usuario> usuarios = this.repository.findByEmail(email);
+			exists = ! usuarios.isEmpty();
 		}
 		
 		return exists;
