@@ -1,7 +1,5 @@
 package ar.com.codigomariano.controllers.admin;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,8 +37,8 @@ public class UserAdminController {
 	
 	@GetMapping(value = PATH_CONTEXT_URL)
 	public String init(Model model) {
-		List<Usuario> usuarios = this.servicio.listAll();
-		model.addAttribute(LIST_ATTRIBUTE, usuarios);
+		//List<Usuario> usuarios = this.servicio.listAll();
+		model.addAttribute(LIST_ATTRIBUTE, null);
 		
 		return PATH_PAGES_URL + "/list";
 	}
