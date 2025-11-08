@@ -30,7 +30,7 @@ public class UserServiceImp implements UserService{
 	}
 
 	@Override
-	public boolean existsUser(String email) {
+	public boolean userExists(String email) {
 		boolean exists = false;
 		
 		if(email != null) {
