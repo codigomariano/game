@@ -1,0 +1,27 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{single-layout}">
+  
+	  
+	<body>
+		<div layout:fragment="content">
+			<div class="card col-lg-4 mx-auto">
+              <div class="card-body px-5 py-5">
+                <h3 th:text="#{login.header.title}" class="card-title text-left mb-3">Login</h3>
+                <form id="loginFrm" th:object="${form}" th:action="@{/signIn}" method="post">
+                	<div class="form-group">
+                    	<label th:text="#{email.field}"></label>
+                    	<input id="email" type="email" th:field="*{email}" th:class="'form-control' +  ${#fields.hasErrors('email') ? ' is-invalid' : ''}" placeholder="Email" required="required">
+                        <div id="email-err" class="feedback invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                  	</div>
+                  <div class="text-center">
+                  	<button id="loginBtn" type="submit" th:text="#{login.btn}" class="btn btn-primary btn-block enter-btn"></button>
+                  </div>
+                </form>
+              </div>
+            </div>
+		</div>
+	</body>
+</html>

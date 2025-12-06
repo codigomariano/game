@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 	<nav id="sidebar" th:fragment="sidebar" class="sidebar sidebar-offcanvas">
 		<div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
@@ -59,10 +60,11 @@
               		<span class="menu-title" th:text="#{menu.administracion}"></span>
               		<i class="menu-arrow"></i>
             	</a>
+				
 	            <div class="collapse" id="ui-basic">
 	            	<ul class="nav flex-column sub-menu">
-	                	<li class="nav-item"> <a class="nav-link" th:href="@{/adm/users}" th:text="#{menu.administracion.users}"></a></li>
-	                	<li class="nav-item"> <a class="nav-link" href="#" th:text="#{menu.menu.administracion.questions}"></a></li>
+	                	<li sec:authorize="hasRole('ROLE_ADMINISTRADOR')" class="nav-item"> <a class="nav-link" th:href="@{/adm/users}" th:text="#{menu.administracion.users}"></a></li>
+	                	<li sec:authorize="hasAnyRole('ROLE_ADMINISTRADOR', 'ROLE_JUGADOR')" class="nav-item"> <a class="nav-link" href="#" th:text="#{menu.menu.administracion.questions}"></a></li>
 	              	</ul>
 	            </div>
         	</li>

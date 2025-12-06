@@ -58,7 +58,6 @@ public class UserAdminController {
 			formulario.setEmail(usuario.getEmail());
 		}
 		
-		
 		model.addAttribute(FORM_ATTRIBUTE, formulario);
 		return PATH_PAGES_URL + "/form";
 	}
@@ -81,4 +80,5 @@ public class UserAdminController {
 		
 		return "redirect:" + PATH_CONTEXT_URL;
 	}
+	
 }

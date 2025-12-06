@@ -1,25 +1,23 @@
 package ar.com.codigomariano.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import ar.com.codigomariano.domain.Usuario;
-import ar.com.codigomariano.servicios.UserService;
+import ar.com.codigomariano.forms.MessageForm;
 
 @Controller
 public class Home {
-	@Autowired
-	private UserService service;
+	public static final String HOME_URL = "/home";
 	
 	@GetMapping("/")
-	public String home() {
-		Usuario u = new Usuario("dummy@hotmail.com");
-		System.out.println(u.getId());
-		this.service.guardarUsuario(u);
-		System.out.println(u.getId());
-		
-		u = this.service.obtener(1l);
+	public String home() {		
+		return "redirect:" + "/login";
+	}
+	
+	@GetMapping(HOME_URL)
+	public String init(Model model) {
+		model.addAttribute("msgForm", new MessageForm());
 		
 		return "home";
 	}

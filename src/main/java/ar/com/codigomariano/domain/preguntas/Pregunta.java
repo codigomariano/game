@@ -1,25 +1,16 @@
 package ar.com.codigomariano.domain.preguntas;
 
-import java.util.List;
-
-import org.hibernate.annotations.Type;
-
 import ar.com.codigomariano.domain.Persistible;
 import ar.com.codigomariano.enums.Categoria;
 import ar.com.codigomariano.enums.Opcion;
 import jakarta.persistence.Column;
-import jakarta.persistence.Convert;
-import jakarta.persistence.Converter;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorType;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity

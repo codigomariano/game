@@ -25,6 +25,13 @@ public class UserServiceImp implements UserService{
 		return user.get();
 	}
 	
+	@Override
+	public Usuario obtener(String email) {
+		List<Usuario> usuarios = this.repository.findByEmail(email);
+		
+		return usuarios.get(0);
+	}
+	
 	public void guardarUsuario(Usuario u) {
 		this.repository.save(u);
 	}

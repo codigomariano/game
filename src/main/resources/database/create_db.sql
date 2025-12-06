@@ -4,6 +4,12 @@ create table CATEGORIAS(
 	PRIMARY KEY(ID)
 );
 
+create table PERMISOS(
+	ID int NOT NULL,
+	nombre varchar(25) NOT NULL,
+	PRIMARY KEY(ID)
+);
+
 create table JUEGOS(
 	ID bigint not null AUTO_INCREMENT,
 	PRIMARY KEY(ID)
@@ -42,3 +48,14 @@ create table RESPUESTAS(
 );
 
 alter table RESPUESTAS add constraint RES$PRE foreign key (pregunta_id) references PREGUNTAS(ID);
+
+create table PERMISOS_USUARIOS(
+	PERMISO_ID int not null,
+	USUARIO_ID bigint not null,
+	PRIMARY KEY(PERMISO_ID, USUARIO_ID)
+);
+
+alter table PERMISOS_USUARIOS add constraint PUSR$PER foreign key (PERMISO_ID) references PERMISOS(ID);
+
+alter table PERMISOS_USUARIOS add constraint PUSR$USR foreign key (USUARIO_ID) references USUARIOS(ID);
+

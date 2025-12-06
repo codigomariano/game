@@ -18,7 +18,7 @@
 		
 					<form id="userFrm" th:object="${form}" th:action="@{/adm/users/save}" method="post" class="forms-sample">
 						<div class="form-group row">
-                        	<label for="exampleInputEmail2" class="col-sm-3 col-form-label">Email</label>
+                        	<label for="exampleInputEmail2" class="col-sm-3 col-form-label" th:text="#{email.field}"></label>
                         	<div class="col-sm-9">
                           		<input id="email" type="email" th:field="*{email}" th:class="'form-control' +  ${#fields.hasErrors('email') ? ' is-invalid' : ''}" placeholder="Email" required="required">
                           		<div id="email-err" class="feedback invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>

@@ -35,7 +35,7 @@ public class Juego extends Persistible{
 	
 	private int localizarEmail(String email) throws EmailNotFoundException {
 		int index = 0;
-		int pos = -1;
+		int pos = Integer.MIN_VALUE;
 		
 		while(index < this.usuarios.size() && pos == -1) {
 			Usuario u = this.usuarios.get(index);

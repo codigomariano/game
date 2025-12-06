@@ -52,10 +52,13 @@
                     <div class="preview-item-content">
                       <p class="preview-subject ellipsis mb-1">Profile picture updated</p>
                       <p class="text-muted mb-0"> 18 Minutes ago </p>
+                      <p th:text="${session.id_message}"></p>                   
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>
-                  <p class="p-3 mb-0 text-center">4 new messages</p>
+                  	 <a th:href="@{/message/confirm}">
+                  		<p class="p-3 mb-0 text-center">Confirmar</p>
+                  	 </a>
                 </div>
               </li>
               <li class="nav-item dropdown border-left">
@@ -127,14 +130,14 @@
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
+                  <a th:href="@{/logout}" class="dropdown-item preview-item">
                     <div class="preview-thumbnail">
                       <div class="preview-icon bg-dark rounded-circle">
                         <i class="mdi mdi-logout text-danger"></i>
                       </div>
                     </div>
                     <div class="preview-item-content">
-                      <p class="preview-subject mb-1">Log out</p>
+                      <p class="preview-subject mb-1" th:text="#{logout.btn}"></p>
                     </div>
                   </a>
                 </div>
