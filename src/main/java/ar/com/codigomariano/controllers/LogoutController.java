@@ -13,7 +13,7 @@ public class LogoutController {
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		SecurityContextHolder.clearContext();
-		request.getSession().getAttribute("prueba");
+		
 		return "redirect:" + LoginController.LOGIN_URL;
 	}
 }
