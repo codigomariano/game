@@ -16,11 +16,15 @@ import ar.com.codigomariano.servicios.UserService;
 
 @RestController
 public class UserAPIRestService {
+	public static final String URL_PATH = "/api";
+	public static final String API_USERS_URL_PATH = URL_PATH + "/users";
+	public static final String API_SAVE_USER_URL_PATH = URL_PATH + "/users/save";
+	
 	@Autowired
 	private UserService service;
 	
 	
-	@GetMapping(value = "/api/users", 
+	@GetMapping(value = API_USERS_URL_PATH,  
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<UsuarioDTO>> list() {
@@ -30,7 +34,7 @@ public class UserAPIRestService {
 	}
 	
 	
-	@PostMapping(value = "/api/users/save", 
+	@PostMapping(value = API_SAVE_USER_URL_PATH, 
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> save(@RequestBody UserForm formulario) {
