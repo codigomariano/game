@@ -6,6 +6,7 @@ import ar.com.codigomariano.enums.Opcion;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -17,6 +18,7 @@ import jakarta.persistence.Table;
 @Table(name = "PREGUNTAS")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "discriminator", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue(value = "PROFESIONAL")
 public abstract class Pregunta<T> extends Persistible{
 	private static final int DEFAULT_PUNTOS = 100;
 	private static final String ERR_CODIGO_VACIO = "El código no puede estar vacío";
@@ -58,6 +60,12 @@ public abstract class Pregunta<T> extends Persistible{
 	}
 	
 	
+	
+	
+	public String getCodigo() {
+		return codigo;
+	}
+
 	public void mostar() {
 		System.out.println(this.texto);
 	

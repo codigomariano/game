@@ -10,7 +10,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import ar.com.codigomariano.domain.Juego;
 import ar.com.codigomariano.servicios.JWTService;
+import ar.com.codigomariano.servicios.JWTServiceImp;
+import ar.com.codigomariano.servicios.PepitoService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,7 +22,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @Component
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 	@Autowired
-	private JWTService jwtService;
+	private JWTService jwtService = new PepitoService();
 	
 	
 	@Override
@@ -29,9 +32,11 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 		
 		if(existeTokenJWT(request)) {
 			String token = fetchToken(request);
-			
+		
 			if(isValidToken(token)) {
 				Authentication auth = jwtService.buildAuthentication(token);
+				
+				doSometing(jwtService);
 				
 				SecurityContext contexto = SecurityContextHolder.getContext();
 				contexto.setAuthentication(auth);								
@@ -59,6 +64,12 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 		String[] segmentos = value.split(" ");
 		
 		return segmentos[1];
+	}
+	
+	private String doSometing(JWTService ser) {
+	
+		
+		return null;
 	}
 	
 	private boolean isValidToken(String token) {
