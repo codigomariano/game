@@ -1,6 +1,7 @@
 package ar.com.codigomariano.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ar.com.codigomariano.domain.preguntas.Pregunta;
 import ar.com.codigomariano.exceptions.EmailNotFoundException;
@@ -15,10 +16,11 @@ import jakarta.persistence.Table;
 public class Juego extends Persistible{
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "juego_id", referencedColumnName = "ID")
-	private ArrayList<Usuario> usuarios;
+	private List<Usuario> usuarios;
 	
-	@OneToMany
-	private ArrayList<Pregunta> preguntas;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "juego_id", referencedColumnName = "ID", nullable = false)
+	private List<Pregunta> preguntas;
 	
 	
 	public Juego() {
@@ -26,6 +28,10 @@ public class Juego extends Persistible{
 		this.preguntas = new ArrayList<Pregunta>();
 	}
 	
+	
+	public void agregarPregunta(Pregunta pregunta) {
+		this.preguntas.add(pregunta);
+	}
 	
 	public Partida iniciarPartida(String email) throws EmailNotFoundException {
 		int posicion = localizarEmail(email);

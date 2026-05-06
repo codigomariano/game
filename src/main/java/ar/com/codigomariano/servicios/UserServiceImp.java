@@ -10,13 +10,14 @@ import org.springframework.stereotype.Service;
 
 import ar.com.codigomariano.domain.Usuario;
 import ar.com.codigomariano.dtos.UsuarioDTO;
+import ar.com.codigomariano.exceptions.EmailAlreadyExistsException;
 import ar.com.codigomariano.repositorios.UserRepository;
 
 @Service
 public class UserServiceImp implements UserService{
 	@Autowired
 	private UserRepository repository;
-	
+
 	private ModelMapper mapper = new ModelMapper();
 	
 	
@@ -33,6 +34,8 @@ public class UserServiceImp implements UserService{
 	}
 	
 	public void guardarUsuario(Usuario u) {
+		if(userExists(u.getEmail())) throw new EmailAlreadyExistsException(u.getEmail());
+	
 		this.repository.save(u);
 	}
 

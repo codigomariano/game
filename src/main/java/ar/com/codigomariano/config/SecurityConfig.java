@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import ar.com.codigomariano.api.rest.LoginAPIRestService;
@@ -41,11 +42,19 @@ public class SecurityConfig {
 
 		return http.securityMatcher("/**")
 			.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
+			.exceptionHandling(ex -> ex.accessDeniedHandler(accessDeniedHandler()))
 			.authorizeHttpRequests(auth -> auth.requestMatchers("/css/**", "/fonts/**", "/images/**", "/js/**").permitAll()
 					  .requestMatchers("/signIn").permitAll()
 					  .requestMatchers("/adm/users").hasRole(Permiso.ADMINISTRADOR.name())
-					  .anyRequest().permitAll())
-			.formLogin(page -> page.loginPage(LoginController.LOGIN_URL).permitAll()).build() ;
-		
+					  .anyRequest().authenticated())
+			.formLogin(page -> page.loginPage(LoginController.LOGIN_URL).permitAll()).build() ;	
 	}
+	
+	@Bean
+	public AccessDeniedHandler accessDeniedHandler() {
+	    return (request, response, accessDeniedException) -> {
+	        response.sendRedirect(LoginController.LOGIN_URL);
+	    };
+	}
+	
 }

@@ -13,7 +13,7 @@ public class PreguntaServiceImp implements PreguntaService {
 	
 	
 	@Override
-	public void guardarPregunta(Pregunta<?> pregunta) {
+	public void guardarPregunta(Pregunta pregunta) {
 		this.repository.save(pregunta);
 	}
 }

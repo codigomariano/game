@@ -1,5 +1,6 @@
 package ar.com.codigomariano.domain;
 
+import java.io.UncheckedIOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,8 +72,8 @@ public class Usuario extends Persistible {
 	}
 	
 	public void setEmail(String email) {
-		if(email == null || email.length() < EMAIL_MIN_CARACTERES || email.length() > EMAIL_MAX_CARACTERES) {
-			throw new IllegalArgumentException("El mail del usuario debe tener entre "+EMAIL_MIN_CARACTERES+" y "+EMAIL_MAX_CARACTERES+" caracteres");
+		if(email == null || email.isBlank() || email.length() < EMAIL_MIN_CARACTERES || email.length() > EMAIL_MAX_CARACTERES) {
+			throw new RuntimeException("El mail del usuario debe tener entre "+EMAIL_MIN_CARACTERES+" y "+EMAIL_MAX_CARACTERES+" caracteres");
 		}
 		
 		this.email = email;

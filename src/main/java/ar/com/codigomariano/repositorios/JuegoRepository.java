@@ -3,9 +3,9 @@ package ar.com.codigomariano.repositorios;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import ar.com.codigomariano.domain.preguntas.Pregunta;
+import ar.com.codigomariano.domain.Juego;
 
 @Repository
-public interface PreguntaRepository extends JpaRepository<Pregunta, Long>{
+public interface JuegoRepository extends JpaRepository<Juego, Long>{
 
 }
